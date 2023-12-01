@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Table Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        img {
+            width: 200px;
+            height: 400px;
+            height: auto;
+        }
+    </style>
+    <script>
+        var arr = [
+            {
+                title: 'Learning How to learn',
+                image: 'https://cdn.codegym.cc/images/article/bbcda54e-3cd0-4dac-a77a-447484b8b487/512.jpeg',
+                price: 251100
+            },
+            {
+                title: 'How to learn',
+                image: 'https://cdn.codegym.cc/images/article/bbcda54e-3cd0-4dac-a77a-447484b8b487/512.jpeg',
+                price: 131100
+            },
+            {
+                title: 'to learn',
+                image: 'https://cdn.codegym.cc/images/article/bbcda54e-3cd0-4dac-a77a-447484b8b487/512.jpeg',
+                price: 301100
+            }
+        ];
+
+        function compare(a, b) {
+            if (b.title > a.title) return 1;
+            if (b.title < a.title) return -1;
+            return 0;
+        }
+
+        function Show() {
+            arr.sort(compare);
+
+            var table = document.createElement('table');
+            var row = table.insertRow();
+
+            for (var i = 0; i < arr.length; i++) {
+                var cell = row.insertCell();
+                cell.innerHTML = `<div>${arr[i].title}</div>
+                                  <img src='${arr[i].image}' alt='${arr[i].title}'>
+                                  <div>${arr[i].price} VND</div>`;
+            }
+
+            document.body.appendChild(table);
+        }
+    </script>
+</head>
+
+<body onload="Show()"></body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+</head>
+
+<body>
+    <script>
+        class Product {
+            constructor(id, name, quantity, price, image) {
+                this.id = id;
+                this.name = name;
+                this.quantity = quantity;
+                this.price = price;
+                this.image = image;
+            }
+        }
+
+        let productList = [
+            new Product(1, 'Laptop', 5, 1200, 'laptop_image.jpg'),
+            new Product(2, 'Phone', 10, 800, 'phone_image.jpg'),
+            new Product(3, 'Tablet', 8, 500, 'tablet_image.jpg')
+        ];
+
+        function sortProductsByName() {
+            productList.sort((a, b) => a.name.localeCompare(b.name));
+        }
+
+        function printProducts() {
+            console.log("Initial Products:");
+            productList.forEach(product => console.log(`ID: ${product.id}, Name: ${product.name}, Quantity: ${product.quantity}, Price: ${product.price}, Image: ${product.image}`));
+        }
+
+        function addProductToHead(newProduct) {
+            productList.unshift(newProduct);
+        }
+
+        function addProductToTail(newProduct) {
+            productList.push(newProduct);
+        }
+
+        function searchProductsByName(productName) {
+            console.log("Search Result:");
+            const result = productList.filter(product => product.name.toLowerCase().includes(productName.toLowerCase()));
+            result.forEach(product => console.log(`ID: ${product.id}, Name: ${product.name}, Quantity: ${product.quantity}, Price: ${product.price}, Image: ${product.image}`));
+        }
+
+        function removeProductById(productId) {
+            productList = productList.filter(product => product.id !== productId);
+        }
+
+        function editProductById(productId, updatedProduct) {
+            const index = productList.findIndex(product => product.id === productId);
+            if (index !== -1) {
+                productList[index] = { ...productList[index], ...updatedProduct };
+            }
+        }
+
+        function printUpdatedProducts() {
+            console.log("Updated Products:");
+            productList.forEach(product => console.log(`ID: ${product.id}, Name: ${product.name}, Quantity: ${product.quantity}, Price: ${product.price}, Image: ${product.image}`));
+        }
+
+        sortProductsByName();
+        printProducts();
+
+        const newProductHead = new Product(4, 'Smartwatch', 15, 200, 'watch_image.jpg');
+        addProductToHead(newProductHead);
+        printProducts();
+
+        const newProductTail = new Product(5, 'Camera', 3, 600, 'camera_image.jpg');
+        addProductToTail(newProductTail);
+        printUpdatedProducts();
+
+        searchProductsByName('Tablet');
+        printUpdatedProducts();
+    </script>
+</body>
+
+</html>
